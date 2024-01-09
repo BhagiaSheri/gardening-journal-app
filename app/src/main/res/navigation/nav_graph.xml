@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.miu.gardeningjournal.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_gardenLog"
+            app:destination="@id/gardenLog"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/accelerate_decelerate_interpolator"
+            app:popExitAnim="@android:anim/accelerate_interpolator" />
+    </fragment>
+    <fragment
+        android:id="@+id/gardenLog"
+        android:name="com.miu.gardeningjournal.GardenLog"
+        android:label="fragment_garden_log"
+        tools:layout="@layout/fragment_garden_log" >
+        <action
+            android:id="@+id/action_gardenLog_to_plantDetailsFragment"
+            app:destination="@id/plantDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/accelerate_decelerate_interpolator"
+            app:popExitAnim="@android:anim/anticipate_interpolator" />
+        <action
+            android:id="@+id/action_gardenLog_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/plantDetailsFragment"
+        android:name="com.miu.gardeningjournal.PlantDetailsFragment"
+        android:label="fragment_plant_details"
+        tools:layout="@layout/fragment_plant_details" >
+        <action
+            android:id="@+id/action_plantDetailsFragment_to_gardenLog"
+            app:destination="@id/gardenLog" />
+    </fragment>
+</navigation>
