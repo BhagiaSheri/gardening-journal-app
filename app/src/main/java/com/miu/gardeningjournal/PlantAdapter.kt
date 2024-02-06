@@ -2,7 +2,6 @@ package com.miu.gardeningjournal
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -30,15 +29,10 @@ class PlantAdapter : ListAdapter<Plant, PlantAdapter.PlantViewHolder>(PlantDiffC
 
                 // Set click listener for the plant name
                 plantName.setOnClickListener {
-                    val plantName = "Plant Name: ${plant.name}"
-                    val plantType = "Type: ${plant.type}"
-                    val waterFrequency = "Watering Frequency: ${plant.wateringFrequency} day(s)"
-                    val plantingDate = "Planting Date: ${plant.plantingDate}"
-
                     // Get the NavController from the itemView
                     val navController = it.findNavController()
                     // Navigate to the plant details destination with plant details
-                    navController.navigate(GardenLogFragmentDirections.actionGardenLogToPlantDetailsFragment(plantName, plantType, waterFrequency, plantingDate))
+                    navController.navigate(GardenLogFragmentDirections.actionGardenLogToPlantDetailsFragment(plant.id))
                 }
             }
         }

@@ -55,18 +55,37 @@ class GardenLogFragment : Fragment() {
             plants?.let { adapter.submitList(it) }
         }
 
-        val samplePlants = mutableListOf<Plant>()
-        // Add sample plants
-        samplePlants.add(Plant(name = "Rose", type = "Flower", wateringFrequency = 2, plantingDate = "2023-01-01"))
-        samplePlants.add(Plant(name = "Tomato", type = "Vegetable", wateringFrequency = 3, plantingDate = "2023-02-15"))
-        samplePlants.add(Plant(name = "Basil", type = "Herb", wateringFrequency = 1, plantingDate = "2023-03-10"))
+//        val samplePlants = mutableListOf<Plant>()
+//        // Add sample plants
+//        samplePlants.add(
+//            Plant(
+//                name = "Rose",
+//                type = "Flower",
+//                wateringFrequency = 2,
+//                plantingDate = "2023-01-01"
+//            )
+//        )
+//        samplePlants.add(
+//            Plant(
+//                name = "Tomato",
+//                type = "Vegetable",
+//                wateringFrequency = 3,
+//                plantingDate = "2023-02-15"
+//            )
+//        )
+//        samplePlants.add(
+//            Plant(
+//                name = "Basil",
+//                type = "Herb",
+//                wateringFrequency = 1,
+//                plantingDate = "2023-03-10"
+//            )
+//        )
+//
+//        for (plant in samplePlants) {
+//            viewModel.insert(plant)
+//        }
 
-        // Insert sample plants into the database if empty
-        if(viewModel.allPlants.value?.isEmpty() == true) {
-            for (plant in samplePlants) {
-                viewModel.insert(plant)
-            }
-        }
         view.findViewById<Button>(R.id.btnAddPlant).setOnClickListener {
             showAddPlantDialog()
         }
@@ -98,18 +117,16 @@ class GardenLogFragment : Fragment() {
             val plantName = editTextPlantName.text.toString()
             val type = editTextType.text.toString()
             val wateringFrequency = editTextWateringFrequency.text.toString().toIntOrNull() ?: 0
-            val plantingDate = plantingSelectedDate
 
             // Add the plant details to your data source or database
             val newPlant = Plant(
                 name = plantName,
                 type = type,
                 wateringFrequency = wateringFrequency,
-                plantingDate = plantingDate
+                plantingDate = plantingSelectedDate
             )
 
             lifecycleScope.launch {
-                viewModel.deleteAll()
                 viewModel.insert(newPlant)
             }
 

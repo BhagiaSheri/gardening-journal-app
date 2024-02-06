@@ -37,16 +37,7 @@
             android:id="@+id/action_plantDetailsFragment_to_gardenLog"
             app:destination="@id/gardenLog" />
         <argument
-            android:name="pname"
-            app:argType="string" />
-        <argument
-            android:name="ptype"
-            app:argType="string" />
-        <argument
-            android:name="waterFrequency"
-            app:argType="string" />
-        <argument
-            android:name="pdate"
-            app:argType="string" />
+            android:name="pId"
+            app:argType="integer" />
     </fragment>
 </navigation>
