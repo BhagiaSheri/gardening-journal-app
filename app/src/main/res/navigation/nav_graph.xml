@@ -12,28 +12,22 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_gardenLog"
-            app:destination="@id/gardenLog"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@android:anim/accelerate_decelerate_interpolator"
-            app:popExitAnim="@android:anim/accelerate_interpolator" />
+            app:destination="@id/gardenLog" />
     </fragment>
+
     <fragment
         android:id="@+id/gardenLog"
-        android:name="com.miu.gardeningjournal.GardenLog"
+        android:name="com.miu.gardeningjournal.GardenLogFragment"
         android:label="fragment_garden_log"
         tools:layout="@layout/fragment_garden_log" >
         <action
             android:id="@+id/action_gardenLog_to_plantDetailsFragment"
-            app:destination="@id/plantDetailsFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@android:anim/accelerate_decelerate_interpolator"
-            app:popExitAnim="@android:anim/anticipate_interpolator" />
+            app:destination="@id/plantDetailsFragment" />
         <action
             android:id="@+id/action_gardenLog_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/plantDetailsFragment"
         android:name="com.miu.gardeningjournal.PlantDetailsFragment"
@@ -42,5 +36,17 @@
         <action
             android:id="@+id/action_plantDetailsFragment_to_gardenLog"
             app:destination="@id/gardenLog" />
+        <argument
+            android:name="pname"
+            app:argType="string" />
+        <argument
+            android:name="ptype"
+            app:argType="string" />
+        <argument
+            android:name="waterFrequency"
+            app:argType="string" />
+        <argument
+            android:name="pdate"
+            app:argType="string" />
     </fragment>
 </navigation>
