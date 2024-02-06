@@ -1,10 +1,13 @@
 package com.miu.gardeningjournal
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CalendarView
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -65,10 +68,55 @@ class GardenLogFragment : Fragment() {
             }
         }
         view.findViewById<Button>(R.id.btnAddPlant).setOnClickListener {
-            val newPlant = Plant( name="Mango", type =  "Fruit", wateringFrequency =  2, plantingDate = "2024-02-06")
-            lifecycleScope.launch {
-              viewModel.insert(newPlant)
-            }
+            showAddPlantDialog()
         }
+    }
+
+    private fun showAddPlantDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_add_plant, null)
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setTitle("Add New Plant")
+
+        val alertDialog = dialogBuilder.create()
+
+        val editTextPlantName = dialogView.findViewById<EditText>(R.id.editTextPlantName)
+        val editTextType = dialogView.findViewById<EditText>(R.id.editTextType)
+        val editTextWateringFrequency =
+            dialogView.findViewById<EditText>(R.id.editTextWateringFrequency)
+        val calendarView = dialogView.findViewById<CalendarView>(R.id.plantingDate)
+        val buttonAddPlant = dialogView.findViewById<Button>(R.id.buttonAddPlant)
+
+        var plantingSelectedDate = ""
+        // Listener to get the selected date from the CalendarView
+        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            plantingSelectedDate = "$year-${month + 1}-$dayOfMonth"
+        }
+
+        buttonAddPlant.setOnClickListener {
+            // Retrieve user input from EditText fields
+            val plantName = editTextPlantName.text.toString()
+            val type = editTextType.text.toString()
+            val wateringFrequency = editTextWateringFrequency.text.toString().toIntOrNull() ?: 0
+            val plantingDate = plantingSelectedDate
+
+            // Add the plant details to your data source or database
+            val newPlant = Plant(
+                name = plantName,
+                type = type,
+                wateringFrequency = wateringFrequency,
+                plantingDate = plantingDate
+            )
+
+            lifecycleScope.launch {
+                viewModel.deleteAll()
+                viewModel.insert(newPlant)
+            }
+
+            // Dismiss the dialog
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
     }
 }

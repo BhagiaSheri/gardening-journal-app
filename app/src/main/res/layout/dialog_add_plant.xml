@@ -1,6 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/editTextPlantName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:hint="Enter Plant Name" />
+
+    <EditText
+        android:id="@+id/editTextType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:hint="Enter Plant Type/Kind" />
+
+    <EditText
+        android:id="@+id/editTextWateringFrequency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:hint="Enter Watering Frequency" />
+
+    <TextView
+        android:id="@+id/textViewlantingDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="Select Planting Date" />
+
+    <CalendarView
+        android:id="@+id/plantingDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/buttonAddPlant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Add New Plant" />
+</LinearLayout>
